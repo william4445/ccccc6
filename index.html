@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso Microsoft 365 — Plataforma Interactiva</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ms-blue: #0078D4;
+  --ms-dark: #003A6E;
+  --ms-navy: #001D3D;
+  --ms-cyan: #00B7C3;
+  --ms-light: #EFF6FC;
+  --ms-green: #107C10;
+  --ms-yellow: #FFB900;
+  --ms-red: #D13438;
+  --ms-purple: #8764B8;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-400: #94A3B8;
+  --gray-600: #475569;
+  --gray-800: #1E293B;
+  --font: 'Plus Jakarta Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,78,212,0.10);
+  --shadow-lg: 0 16px 48px rgba(0,78,212,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--ms-navy);
+  color: var(--gray-800);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #001528 0%, #003A6E 50%, #0050A0 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(0,183,195,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 80% 30%, rgba(0,120,212,0.18) 0%, transparent 60%);
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,120,212,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,120,212,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: gridFloat 20s linear infinite;
+}
+
+@keyframes gridFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(48px); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,183,195,0.15);
+  border: 1px solid rgba(0,183,195,0.3);
+  color: #00D4E0;
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  position: relative;
+  animation: fadeDown 0.8s ease both;
+}
+
+.badge-dot {
+  width: 6px; height: 6px;
+  background: #00D4E0;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+.hero-logo {
+  font-size: 7rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  position: relative;
+  animation: fadeDown 0.9s ease 0.1s both;
+  filter: drop-shadow(0 0 40px rgba(0,120,212,0.5));
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-align: center;
+  position: relative;
+  animation: fadeDown 1s ease 0.2s both;
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, #00B7C3, #50E6FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  color: rgba(255,255,255,0.6);
+  font-size: 1.15rem;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 1.2rem;
+  max-width: 540px;
+  line-height: 1.7;
+  position: relative;
+  animation: fadeDown 1s ease 0.3s both;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  animation: fadeDown 1s ease 0.4s both;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hero-meta-item .val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.hero-meta-item .lbl {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  animation: fadeDown 1s ease 0.5s both;
+}
+
+.btn-primary {
+  background: var(--ms-blue);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(0,120,212,0.4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background: #106EBE;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,120,212,0.5);
+}
+
+.btn-outline {
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-outline:hover {
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.08);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: fadeDown 1s ease 0.8s both;
+}
+
+.scroll-arrow {
+  width: 24px; height: 24px;
+  border-right: 2px solid rgba(255,255,255,0.25);
+  border-bottom: 2px solid rgba(255,255,255,0.25);
+  transform: rotate(45deg);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(6px); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  background: var(--gray-50);
+  position: relative;
+}
+
+/* ===== NAV ===== */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 2rem;
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  padding: 1rem 1.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  cursor: pointer;
+  border-bottom: 2.5px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  font-family: var(--font);
+}
+
+.nav-tab:hover { color: var(--ms-blue); }
+.nav-tab.active {
+  color: var(--ms-blue);
+  border-bottom-color: var(--ms-blue);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  display: none;
+}
+
+.section.active { display: block; }
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ms-blue);
+  margin-bottom: 1rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--ms-blue);
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  color: var(--ms-navy);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  max-width: 640px;
+  margin-bottom: 3rem;
+}
+
+/* ===== INFO CARDS ===== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.info-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ms-blue), var(--ms-cyan));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.info-card:hover::before { transform: scaleX(1); }
+.info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+
+.info-card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.info-card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ms-blue);
+  margin-bottom: 0.4rem;
+}
+
+.info-card-value {
+  font-size: 0.92rem;
+  color: var(--gray-800);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ===== H5P ROUTE ===== */
+.route-path {
+  background: linear-gradient(135deg, var(--ms-navy), #003A6E);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.route-path::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at right, rgba(0,183,195,0.1), transparent 70%);
+}
+
+.route-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.route-step-text {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: default;
+  transition: all 0.2s;
+}
+
+.route-step-text:hover {
+  background: rgba(0,120,212,0.3);
+  border-color: var(--ms-cyan);
+  color: var(--ms-cyan);
+}
+
+.route-arrow {
+  color: rgba(255,255,255,0.3);
+  font-size: 1.1rem;
+  padding: 0 4px;
+}
+
+.link-box {
+  background: white;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+  flex-wrap: wrap;
+}
+
+.link-box:hover {
+  border-color: var(--ms-blue);
+  box-shadow: 0 0 0 4px rgba(0,120,212,0.08);
+}
+
+.link-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ms-blue);
+  margin-bottom: 4px;
+}
+
+.link-url {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--gray-800);
+}
+
+.copy-btn {
+  background: var(--ms-light);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ms-blue);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.copy-btn:hover { background: var(--ms-blue); color: white; }
+.copy-btn.copied { background: var(--ms-green); color: white; }
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ms-blue), var(--ms-cyan), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 2rem 1.5rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.5s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2.35rem;
+  top: 3px;
+  width: 12px; height: 12px;
+  background: var(--ms-blue);
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 3px rgba(0,120,212,0.2);
+}
+
+.timeline-year {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ms-blue);
+  margin-bottom: 4px;
+}
+
+.timeline-text {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* ===== TOOLS GRID ===== */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.tool-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--ms-blue);
+}
+
+.tool-icon-wrap {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.tool-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ms-navy);
+  margin-bottom: 4px;
+}
+
+.tool-desc {
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+}
+
+.tool-link {
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  color: var(--ms-blue);
+  margin-top: 8px;
+  display: block;
+  opacity: 0.7;
+}
+
+/* ===== MODULES ===== */
+.modules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.module-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.25s;
+}
+
+.module-card:hover { box-shadow: var(--shadow); }
+
+.module-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.module-num {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-cyan));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+  font-family: var(--mono);
+}
+
+.module-title-wrap { flex: 1; min-width: 0; }
+
+.module-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ms-navy);
+}
+
+.module-subtitle {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+
+.module-toggle {
+  color: var(--gray-400);
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.module-card.open .module-toggle { transform: rotate(180deg); }
+
+.module-body {
+  display: none;
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid var(--gray-100);
+}
+
+.module-card.open .module-body { display: block; }
+
+.module-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.tag {
+  background: var(--ms-light);
+  color: var(--ms-blue);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.progress-bar-wrap {
+  background: var(--gray-100);
+  border-radius: 99px;
+  height: 6px;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--ms-blue), var(--ms-cyan));
+  transition: width 1s ease;
+  width: 0%;
+}
+
+/* ===== PRIVACY SECTION ===== */
+.warning-box {
+  background: #FFF8E6;
+  border: 1.5px solid #FFB900;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.warning-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+.warning-title {
+  font-weight: 700;
+  color: #6B4C00;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.warning-text {
+  font-size: 0.85rem;
+  color: #7D5A00;
+  line-height: 1.6;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.step-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.25s;
+}
+
+.step-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+
+.step-num {
+  width: 36px; height: 36px;
+  background: var(--ms-blue);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-family: var(--mono);
+}
+
+.step-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ms-navy);
+  margin-bottom: 6px;
+}
+
+.step-desc {
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+}
+
+.methods-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.method-tab {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--gray-200);
+  background: white;
+  color: var(--gray-600);
+  font-family: var(--font);
+  transition: all 0.2s;
+}
+
+.method-tab.active {
+  background: var(--ms-blue);
+  border-color: var(--ms-blue);
+  color: white;
+}
+
+.method-content { display: none; }
+.method-content.active { display: block; }
+
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checklist li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+}
+
+.checklist li::before {
+  content: '▸';
+  color: var(--ms-blue);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.exif-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.exif-table th {
+  background: var(--ms-navy);
+  color: var(--ms-cyan);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.exif-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-800);
+}
+
+.exif-table tr:nth-child(even) td { background: var(--gray-50); }
+.exif-table tr:last-child td { border-bottom: none; }
+
+.badge-yes { color: var(--ms-green); font-weight: 700; }
+.badge-partial { color: var(--ms-yellow); font-weight: 700; }
+.badge-no { color: var(--gray-400); font-weight: 600; }
+
+/* ===== EVALUATION ===== */
+.eval-ring-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.eval-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ring-svg { transform: rotate(-90deg); }
+
+.ring-bg { fill: none; stroke: var(--gray-100); stroke-width: 8; }
+.ring-fill { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1.5s ease; }
+
+.ring-label-val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--ms-navy);
+}
+
+.ring-label-name {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  font-weight: 600;
+  text-align: center;
+  max-width: 100px;
+}
+
+.certif-box {
+  background: linear-gradient(135deg, var(--ms-navy), #003A6E);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.certif-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,183,195,0.1), transparent 70%);
+}
+
+.certif-icon { font-size: 3rem; display: block; margin-bottom: 1rem; position: relative; }
+.certif-title { font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 0.75rem; position: relative; }
+.certif-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 500px; margin: 0 auto; position: relative; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--ms-navy);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer strong { color: rgba(255,255,255,0.8); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 2.4rem; }
+  .hero-logo { font-size: 5rem; }
+  .route-path { gap: 6px; }
+  .route-step-text { font-size: 0.72rem; padding: 6px 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="grid-overlay"></div>
+  <div class="hero-badge"><span class="badge-dot"></span> Plataforma Interactiva H5P · 2025</div>
+  <div class="hero-logo">⊞</div>
+  <h1>Curso <span>Microsoft</span><br>365 Completo</h1>
+  <p class="hero-sub">Herramientas, servicios y buenas prácticas digitales. Desde Office hasta privacidad en la nube.</p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="val">8</span>
+      <span class="lbl">Módulos</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="val">40h</span>
+      <span class="lbl">Duración</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="val">3</span>
+      <span class="lbl">Niveles</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="val">1975</span>
+      <span class="lbl">Fundación</span>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#" class="btn-primary" onclick="showSection('modulos'); return false;">▶ Iniciar Curso</a>
+    <a href="#" class="btn-outline" onclick="showSection('ruta'); return false;">🔗 Ver Ruta H5P</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Explorar</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ===== NAV ===== -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-tab active" onclick="showSection('inicio')">🏠 Inicio</button>
+    <button class="nav-tab" onclick="showSection('ruta')">🔗 Ruta H5P</button>
+    <button class="nav-tab" onclick="showSection('microsoft')">⊞ Microsoft</button>
+    <button class="nav-tab" onclick="showSection('herramientas')">🧰 Herramientas</button>
+    <button class="nav-tab" onclick="showSection('modulos')">📚 Módulos</button>
+    <button class="nav-tab" onclick="showSection('privacidad')">🔒 Privacidad</button>
+    <button class="nav-tab" onclick="showSection('evaluacion')">🎓 Evaluación</button>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- ===== INICIO ===== -->
+  <section id="sec-inicio" class="section active">
+    <div class="section-eyebrow">Bienvenida</div>
+    <h2 class="section-title">Todo lo que necesitas sobre Microsoft en un solo curso</h2>
+    <p class="section-desc">Aprende a dominar el ecosistema Microsoft 365, proteger tu privacidad digital y obtener tu certificación oficial con esta guía completa.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="info-card-icon">📁</span>
+        <div class="info-card-label">Plataforma</div>
+        <div class="info-card-value">Moodle / LMS Institucional con recursos H5P integrados</div>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">⏱</span>
+        <div class="info-card-label">Duración</div>
+        <div class="info-card-value">40 horas académicas · Módulos opcionales disponibles</div>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">🎯</span>
+        <div class="info-card-label">Nivel</div>
+        <div class="info-card-value">Básico → Intermedio → Avanzado · Progresivo</div>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">🏆</span>
+        <div class="info-card-label">Certificación</div>
+        <div class="info-card-value">Compatible con Microsoft Office Specialist (MOS)</div>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">🌐</span>
+        <div class="info-card-label">Microsoft Learn</div>
+        <div class="info-card-value">learn.microsoft.com/es-es/ · Gratuito y oficial</div>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">📅</span>
+        <div class="info-card-label">Año</div>
+        <div class="info-card-value">2025 · Contenido actualizado a la última versión</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RUTA H5P ===== -->
+  <section id="sec-ruta" class="section">
+    <div class="section-eyebrow">Acceso al Curso</div>
+    <h2 class="section-title">Ruta lógica y enlace H5P</h2>
+    <p class="section-desc">Navega desde tu plataforma institucional hasta los recursos interactivos del curso siguiendo esta ruta.</p>
+
+    <div class="route-path">
+      <div class="route-step"><span class="route-step-text">🏠 Inicio de sesión</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-step"><span class="route-step-text">📚 Mis Cursos</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-step"><span class="route-step-text">💻 Tecnología e Informática</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-step"><span class="route-step-text">⊞ Microsoft Office 365</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-step"><span class="route-step-text">📖 Seleccionar Módulo</span></div>
+    </div>
+
+    <div class="link-box">
+      <div>
+        <div class="link-label">🔗 Enlace H5P del Curso</div>
+        <div class="link-url">https://h5p.org/node/[ID-DE-TU-RECURSO]</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://h5p.org/node/[ID-DE-TU-RECURSO]')">Copiar enlace</button>
+    </div>
+
+    <div class="link-box">
+      <div>
+        <div class="link-label">🌐 Microsoft Learn Oficial</div>
+        <div class="link-url">https://learn.microsoft.com/es-es/training/paths/m365-fundamentals/</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://learn.microsoft.com/es-es/training/paths/m365-fundamentals/')">Copiar enlace</button>
+    </div>
+
+    <div class="link-box">
+      <div>
+        <div class="link-label">🏆 Certificación MOS</div>
+        <div class="link-url">https://certiport.pearsonvue.com/Certifications/Microsoft/MOS</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://certiport.pearsonvue.com/Certifications/Microsoft/MOS')">Copiar enlace</button>
+    </div>
+
+    <p style="font-size:0.82rem; color:var(--gray-400); margin-top:1rem;">
+      💡 Reemplaza <code style="background:var(--gray-100);padding:2px 6px;border-radius:4px;font-family:var(--mono)">[ID-DE-TU-RECURSO]</code> con el ID que te asigne tu institución.
+    </p>
+  </section>
+
+  <!-- ===== MICROSOFT ===== -->
+  <section id="sec-microsoft" class="section">
+    <div class="section-eyebrow">Historia</div>
+    <h2 class="section-title">¿Qué es Microsoft?</h2>
+    <p class="section-desc">Empresa tecnológica multinacional fundada en 1975, líder mundial en software, servicios en la nube y soluciones empresariales con presencia en más de 190 países.</p>
+
+    <div class="info-grid" style="margin-bottom:2.5rem;">
+      <div class="info-card">
+        <span class="info-card-icon">👥</span>
+        <div class="info-card-label">Empleados</div>
+        <div class="info-card-value">+220,000 a nivel mundial</div>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">💰</span>
+        <div class="info-card-label">Ingresos anuales</div>
+        <div class="info-card-value">+200,000 millones USD</div>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">🌍</span>
+        <div class="info-card-label">Presencia global</div>
+        <div class="info-card-value">Operaciones en más de 190 países</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.2rem;font-weight:700;color:var(--ms-navy);margin-bottom:1.5rem;">Hitos históricos</h3>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1975</div><div class="timeline-text">Fundación de Microsoft por Bill Gates y Paul Allen en Albuquerque, Nuevo México.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1985</div><div class="timeline-text">Lanzamiento de Windows 1.0, que revoluciona la interfaz gráfica para usuarios.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1990</div><div class="timeline-text">Microsoft Office llega al mercado como suite de productividad integrada.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">1995</div><div class="timeline-text">Windows 95 transforma la informática personal con el menú Inicio e Internet Explorer.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2010</div><div class="timeline-text">Microsoft Azure inicia su expansión como plataforma de computación en la nube empresarial.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2016</div><div class="timeline-text">Adquisición de LinkedIn por 26,200 millones de dólares, la mayor compra de la empresa.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2020</div><div class="timeline-text">Microsoft Teams supera los 115 millones de usuarios diarios durante la pandemia global.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-year">2023</div><div class="timeline-text">Inversión estratégica de 10,000 millones USD en OpenAI e integración de IA en Copilot.</div></div>
+    </div>
+  </section>
+
+  <!-- ===== HERRAMIENTAS ===== -->
+  <section id="sec-herramientas" class="section">
+    <div class="section-eyebrow">Ecosistema</div>
+    <h2 class="section-title">Microsoft 365 — Herramientas principales</h2>
+    <p class="section-desc">La suite de productividad más utilizada en el mundo empresarial y educativo. Integra apps de escritorio, nube y colaboración.</p>
+
+    <div class="tools-grid">
+      <a class="tool-card" href="https://microsoft.com/word" target="_blank">
+        <div class="tool-icon-wrap" style="background:#EBF3FB;">📝</div>
+        <div>
+          <div class="tool-name">Word</div>
+          <div class="tool-desc">Procesador de textos con formato avanzado, revisión y colaboración en tiempo real.</div>
+          <span class="tool-link">microsoft.com/word</span>
+        </div>
+      </a>
+      <a class="tool-card" href="https://microsoft.com/excel" target="_blank">
+        <div class="tool-icon-wrap" style="background:#EBF7EB;">📊</div>
+        <div>
+          <div class="tool-name">Excel</div>
+          <div class="tool-desc">Hojas de cálculo con funciones avanzadas, tablas dinámicas, gráficos y análisis de datos.</div>
+          <span class="tool-link">microsoft.com/excel</span>
+        </div>
+      </a>
+      <a class="tool-card" href="https://microsoft.com/powerpoint" target="_blank">
+        <div class="tool-icon-wrap" style="background:#FDF0E8;">📑</div>
+        <div>
+          <div class="tool-name">PowerPoint</div>
+          <div class="tool-desc">Presentaciones profesionales con diseño, animaciones y narración multimedia.</div>
+          <span class="tool-link">microsoft.com/powerpoint</span>
+        </div>
+      </a>
+      <a class="tool-card" href="https://microsoft.com/teams" target="_blank">
+        <div class="tool-icon-wrap" style="background:#EEE8F7;">💬</div>
+        <div>
+          <div class="tool-name">Teams</div>
+          <div class="tool-desc">Plataforma de colaboración: chats, videollamadas, reuniones y trabajo en equipo integrado.</div>
+          <span class="tool-link">microsoft.com/teams</span>
+        </div>
+      </a>
+      <a class="tool-card" href="https://microsoft.com/onedrive" target="_blank">
+        <div class="tool-icon-wrap" style="background:#EBF3FB;">☁️</div>
+        <div>
+          <div class="tool-name">OneDrive</div>
+          <div class="tool-desc">Almacenamiento en la nube con 1TB para archivos y sincronización automática entre dispositivos.</div>
+          <span class="tool-link">microsoft.com/onedrive</span>
+        </div>
+      </a>
+      <a class="tool-card" href="https://microsoft.com/outlook" target="_blank">
+        <div class="tool-icon-wrap" style="background:#EBF3FB;">📧</div>
+        <div>
+          <div class="tool-name">Outlook</div>
+          <div class="tool-desc">Gestión de correo electrónico, calendario, tareas y contactos en una sola app.</div>
+          <span class="tool-link">microsoft.com/outlook</span>
+        </div>
+      </a>
+      <a class="tool-card" href="https://microsoft.com/onenote" target="_blank">
+        <div class="tool-icon-wrap" style="background:#F5EBF7;">📓</div>
+        <div>
+          <div class="tool-name">OneNote</div>
+          <div class="tool-desc">Cuaderno digital para notas, organizaciones de ideas y colaboración en equipo.</div>
+          <span class="tool-link">microsoft.com/onenote</span>
+        </div>
+      </a>
+      <a class="tool-card" href="https://azure.microsoft.com" target="_blank">
+        <div class="tool-icon-wrap" style="background:#EBF3FB;">🔷</div>
+        <div>
+          <div class="tool-name">Azure</div>
+          <div class="tool-desc">Plataforma de servicios en la nube para cómputo, bases de datos, IA y más de 200 servicios.</div>
+          <span class="tool-link">azure.microsoft.com</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== MÓDULOS ===== -->
+  <section id="sec-modulos" class="section">
+    <div class="section-eyebrow">Contenido del Curso</div>
+    <h2 class="section-title">Módulos del curso</h2>
+    <p class="section-desc">8 módulos progresivos con contenido H5P interactivo, actividades prácticas y evaluaciones. Haz clic en cada módulo para ver su contenido.</p>
+
+    <div class="modules-list">
+
+      <div class="module-card" onclick="toggleModule(this)">
+        <div class="module-header">
+          <div class="module-num">01</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Introducción a Microsoft</div>
+            <div class="module-subtitle">Historia · Ecosistema · Cuentas Microsoft</div>
+          </div>
+          <div class="module-toggle">▾</div>
+        </div>
+        <div class="module-body">
+          <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.65;">Historia de Microsoft, ecosistema de productos, creación y configuración de cuentas Microsoft, navegación básica por la interfaz de Microsoft 365 y acceso a la plataforma de aprendizaje.</p>
+          <div class="module-tags"><span class="tag">Historia</span><span class="tag">Cuenta Microsoft</span><span class="tag">Interfaz M365</span><span class="tag">Básico</span></div>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" data-width="100"></div></div>
+        </div>
+      </div>
+
+      <div class="module-card" onclick="toggleModule(this)">
+        <div class="module-header">
+          <div class="module-num">02</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Word Esencial</div>
+            <div class="module-subtitle">Formatos · Tablas · Exportar a PDF</div>
+          </div>
+          <div class="module-toggle">▾</div>
+        </div>
+        <div class="module-body">
+          <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.65;">Formatos de texto y párrafo, estilos predefinidos y personalizados, inserción de tablas e imágenes, combinación de correspondencia, revisión ortográfica y exportación a diferentes formatos incluyendo PDF.</p>
+          <div class="module-tags"><span class="tag">Estilos</span><span class="tag">Tablas</span><span class="tag">PDF</span><span class="tag">Correspondencia</span></div>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" data-width="85"></div></div>
+        </div>
+      </div>
+
+      <div class="module-card" onclick="toggleModule(this)">
+        <div class="module-header">
+          <div class="module-num">03</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Excel Básico-Intermedio</div>
+            <div class="module-subtitle">Fórmulas · Gráficos · Tablas dinámicas</div>
+          </div>
+          <div class="module-toggle">▾</div>
+        </div>
+        <div class="module-body">
+          <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.65;">Fórmulas y funciones esenciales (SUMA, SI, BUSCARV, PROMEDIO), creación de gráficos estadísticos, formato condicional, tablas dinámicas y análisis básico de datos empresariales.</p>
+          <div class="module-tags"><span class="tag">BUSCARV</span><span class="tag">Tablas dinámicas</span><span class="tag">Gráficos</span><span class="tag">Análisis</span></div>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" data-width="70"></div></div>
+        </div>
+      </div>
+
+      <div class="module-card" onclick="toggleModule(this)">
+        <div class="module-header">
+          <div class="module-num">04</div>
+          <div class="module-title-wrap">
+            <div class="module-title">PowerPoint Dinámico</div>
+            <div class="module-subtitle">Diseño · Animaciones · Presentar en línea</div>
+          </div>
+          <div class="module-toggle">▾</div>
+        </div>
+        <div class="module-body">
+          <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.65;">Diseño profesional de diapositivas, animaciones y transiciones, inserción de multimedia (video, audio), uso de Designer IA, presentaciones en línea y grabación con narración.</p>
+          <div class="module-tags"><span class="tag">Diseño</span><span class="tag">Animaciones</span><span class="tag">Designer IA</span><span class="tag">Online</span></div>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" data-width="60"></div></div>
+        </div>
+      </div>
+
+      <div class="module-card" onclick="toggleModule(this)">
+        <div class="module-header">
+          <div class="module-num">05</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Teams y Colaboración</div>
+            <div class="module-subtitle">Canales · Reuniones · Integración OneDrive</div>
+          </div>
+          <div class="module-toggle">▾</div>
+        </div>
+        <div class="module-body">
+          <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.65;">Creación y gestión de equipos y canales, organización de reuniones virtuales, compartir y coeditar archivos, integración con OneDrive y SharePoint, y uso de aplicaciones externas.</p>
+          <div class="module-tags"><span class="tag">Canales</span><span class="tag">Reuniones</span><span class="tag">SharePoint</span><span class="tag">Colaboración</span></div>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" data-width="45"></div></div>
+        </div>
+      </div>
+
+      <div class="module-card" onclick="toggleModule(this)">
+        <div class="module-header">
+          <div class="module-num">06</div>
+          <div class="module-title-wrap">
+            <div class="module-title">OneDrive y la Nube</div>
+            <div class="module-subtitle">Almacenamiento · Compartir · Versiones</div>
+          </div>
+          <div class="module-toggle">▾</div>
+        </div>
+        <div class="module-body">
+          <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.65;">Almacenamiento y sincronización de archivos, gestión de permisos de compartir, historial de versiones, trabajo sin conexión y gestión del espacio disponible en la nube.</p>
+          <div class="module-tags"><span class="tag">Nube</span><span class="tag">Sincronización</span><span class="tag">Versiones</span><span class="tag">Permisos</span></div>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" data-width="30"></div></div>
+        </div>
+      </div>
+
+      <div class="module-card" onclick="toggleModule(this)">
+        <div class="module-header">
+          <div class="module-num">07</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Seguridad y Privacidad</div>
+            <div class="module-subtitle">EXIF · Metadatos · Protección de datos</div>
+          </div>
+          <div class="module-toggle">▾</div>
+        </div>
+        <div class="module-body">
+          <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.65;">Contraseñas seguras, autenticación multifactor, eliminación de metadatos EXIF de fotos antes de enviarlas, permisos de archivos y protección de datos personales en la nube.</p>
+          <div class="module-tags"><span class="tag">EXIF</span><span class="tag">Metadatos</span><span class="tag">MFA</span><span class="tag">RGPD</span></div>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" data-width="15"></div></div>
+        </div>
+      </div>
+
+      <div class="module-card" onclick="toggleModule(this)">
+        <div class="module-header">
+          <div class="module-num">08</div>
+          <div class="module-title-wrap">
+            <div class="module-title">Evaluación Final</div>
+            <div class="module-subtitle">Proyecto integrador · Certificación</div>
+          </div>
+          <div class="module-toggle">▾</div>
+        </div>
+        <div class="module-body">
+          <p style="font-size:0.88rem;color:var(--gray-600);line-height:1.65;">Proyecto integrador que combina todas las herramientas aprendidas: documento Word, hoja Excel, presentación PowerPoint y carpeta en OneDrive. Más cuestionario final de certificación.</p>
+          <div class="module-tags"><span class="tag">Proyecto Final</span><span class="tag">Integrador</span><span class="tag">Certificación</span></div>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" data-width="0"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PRIVACIDAD ===== -->
+  <section id="sec-privacidad" class="section">
+    <div class="section-eyebrow">Módulo 7 — Seguridad</div>
+    <h2 class="section-title">Eliminar datos personales de fotos</h2>
+    <p class="section-desc">Antes de enviar una fotografía, debes eliminar los metadatos EXIF que contienen información personal como tu nombre, ubicación GPS y fecha.</p>
+
+    <div class="warning-box">
+      <span class="warning-icon">⚠️</span>
+      <div>
+        <div class="warning-title">¿Sabías que tus fotos contienen datos invisibles?</div>
+        <div class="warning-text">Cada imagen digital almacena metadatos EXIF con tu ubicación GPS exacta, nombre del dispositivo, fecha y hora. Esta información puede ser extraída por cualquier persona que reciba el archivo.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:700;color:var(--ms-navy);margin-bottom:1.25rem;">¿Qué datos contiene una foto?</h3>
+    <table class="exif-table">
+      <thead>
+        <tr>
+          <th>Tipo de dato</th>
+          <th>Ejemplo</th>
+          <th>Riesgo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>📍 Coordenadas GPS</td><td>14.6349° N, 90.5069° W</td><td style="color:var(--ms-red);font-weight:600;">Alto</td></tr>
+        <tr><td>👤 Nombre del propietario</td><td>Juan García / iPhone de Ana</td><td style="color:var(--ms-red);font-weight:600;">Alto</td></tr>
+        <tr><td>📅 Fecha y hora</td><td>2025-03-15 09:34:22</td><td style="color:var(--ms-yellow);font-weight:600;">Medio</td></tr>
+        <tr><td>📱 Modelo de dispositivo</td><td>Samsung Galaxy S24 Ultra</td><td style="color:var(--ms-yellow);font-weight:600;">Medio</td></tr>
+        <tr><td>⚙️ Software / versión OS</td><td>Android 14, Camera 10.2</td><td style="color:var(--gray-400);font-weight:600;">Bajo</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:1.1rem;font-weight:700;color:var(--ms-navy);margin:2.5rem 0 1.25rem;">Método paso a paso (Windows)</h3>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Clic derecho en la foto</div>
+        <div class="step-desc">En el Explorador de archivos, haz clic derecho sobre la imagen y selecciona <strong>Propiedades</strong>.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Pestaña "Detalles"</div>
+        <div class="step-desc">En la ventana de Propiedades, haz clic en la pestaña <strong>Detalles</strong> para ver todos los metadatos.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Quitar propiedades</div>
+        <div class="step-desc">Al final de la pestaña, haz clic en <strong>"Quitar propiedades e información personal"</strong>.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-title">Crear copia limpia</div>
+        <div class="step-desc">Elige <strong>"Crear una copia con todas las propiedades posibles quitadas"</strong> y presiona Aceptar.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:700;color:var(--ms-navy);margin-bottom:1rem;">Otros métodos disponibles</h3>
+
+    <div class="methods-tabs">
+      <button class="method-tab active" onclick="showMethod(this, 'photos')">📱 Microsoft Photos</button>
+      <button class="method-tab" onclick="showMethod(this, 'onedrive')">☁️ OneDrive</button>
+      <button class="method-tab" onclick="showMethod(this, 'tips')">✅ Buenas prácticas</button>
+    </div>
+
+    <div id="method-photos" class="method-content active">
+      <ul class="checklist">
+        <li>Abre la foto en la app <strong>Fotos</strong> de Windows 11</li>
+        <li>Haz clic en el menú de tres puntos <strong>(...)</strong> en la esquina superior derecha</li>
+        <li>Selecciona <strong>"Información del archivo"</strong> para ver los metadatos</li>
+        <li>Desactiva la opción de compartir ubicación antes de enviar</li>
+        <li>Al guardar desde la app, elige excluir datos de ubicación cuando te lo solicite</li>
+      </ul>
+    </div>
+
+    <div id="method-onedrive" class="method-content">
+      <ul class="checklist">
+        <li>Sube la foto a <strong>OneDrive</strong> desde el explorador o la app móvil</li>
+        <li>Haz clic derecho → <strong>"Compartir"</strong> → <strong>"Configuración del enlace"</strong></li>
+        <li>Activa la opción de eliminar metadatos de ubicación si está disponible en tu organización</li>
+        <li>Comparte el <strong>enlace</strong> en lugar del archivo original descargable</li>
+        <li>Usa la opción <strong>"Solo ver"</strong> para evitar que otros descarguen el original</li>
+      </ul>
+    </div>
+
+    <div id="method-tips" class="method-content">
+      <ul class="checklist">
+        <li>Siempre envía una <strong>copia limpia</strong>, nunca el archivo original con metadatos</li>
+        <li>Desactiva el <strong>GPS de la cámara</strong> en Configuración → Privacidad → Ubicación antes de fotografiar</li>
+        <li>Revisa los permisos de <strong>ubicación de la app de cámara</strong> periódicamente</li>
+        <li>Para fotos muy sensibles, usa <strong>Microsoft PowerToys</strong> (Image Resizer) que limpia metadatos automáticamente</li>
+        <li>En <strong>Teams y Outlook</strong>, verifica si tu organización elimina metadatos automáticamente al adjuntar</li>
+        <li>Considera usar capturas de pantalla en lugar de fotos cuando compartes contenido de documentos</li>
+      </ul>
+    </div>
+
+    <table class="exif-table" style="margin-top:2rem;">
+      <thead>
+        <tr>
+          <th>Método</th>
+          <th>Elimina GPS</th>
+          <th>Elimina Nombre</th>
+          <th>Requiere instalación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Explorador de archivos (Windows)</td><td class="badge-yes">✓ Sí</td><td class="badge-yes">✓ Sí</td><td class="badge-no">No</td></tr>
+        <tr><td>App Microsoft Photos (Win 11)</td><td class="badge-yes">✓ Sí</td><td class="badge-partial">⚠ Parcial</td><td class="badge-no">No</td></tr>
+        <tr><td>OneDrive (compartir enlace)</td><td class="badge-yes">✓ Sí</td><td class="badge-partial">⚠ Parcial</td><td class="badge-no">No</td></tr>
+        <tr><td>Microsoft PowerToys</td><td class="badge-yes">✓ Sí</td><td class="badge-yes">✓ Sí</td><td style="color:var(--ms-yellow);font-weight:600;">Descarga gratuita</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== EVALUACIÓN ===== -->
+  <section id="sec-evaluacion" class="section">
+    <div class="section-eyebrow">Cierre del Curso</div>
+    <h2 class="section-title">Evaluación y certificación</h2>
+    <p class="section-desc">Para obtener tu certificado de finalización debes cumplir los siguientes criterios de evaluación.</p>
+
+    <div class="eval-ring-wrap" id="rings">
+      <div class="eval-ring">
+        <svg class="ring-svg" width="110" height="110" viewBox="0 0 110 110">
+          <circle class="ring-bg" cx="55" cy="55" r="46"/>
+          <circle class="ring-fill" cx="55" cy="55" r="46" stroke="#0078D4"
+            stroke-dasharray="289" stroke-dashoffset="231" id="ring1"/>
+        </svg>
+        <div class="ring-label-val">20%</div>
+        <div class="ring-label-name">Actividades H5P</div>
+      </div>
+      <div class="eval-ring">
+        <svg class="ring-svg" width="110" height="110" viewBox="0 0 110 110">
+          <circle class="ring-bg" cx="55" cy="55" r="46"/>
+          <circle class="ring-fill" cx="55" cy="55" r="46" stroke="#00B7C3"
+            stroke-dasharray="289" stroke-dashoffset="173" id="ring2"/>
+        </svg>
+        <div class="ring-label-val">40%</div>
+        <div class="ring-label-name">Prácticas de módulos</div>
+      </div>
+      <div class="eval-ring">
+        <svg class="ring-svg" width="110" height="110" viewBox="0 0 110 110">
+          <circle class="ring-bg" cx="55" cy="55" r="46"/>
+          <circle class="ring-fill" cx="55" cy="55" r="46" stroke="#8764B8"
+            stroke-dasharray="289" stroke-dashoffset="173" id="ring3"/>
+        </svg>
+        <div class="ring-label-val">40%</div>
+        <div class="ring-label-name">Proyecto final integrador</div>
+      </div>
+    </div>
+
+    <div class="certif-box">
+      <span class="certif-icon">🏆</span>
+      <div class="certif-title">Certificación Microsoft Office Specialist (MOS)</div>
+      <div class="certif-desc">Al completar el curso con nota aprobatoria, estarás preparado para presentar el examen oficial MOS en Certiport. La certificación es reconocida mundialmente por empleadores y universidades.</div>
+      <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;">
+        <a href="https://learn.microsoft.com/es-es/" target="_blank" class="btn-primary">📚 Microsoft Learn</a>
+        <a href="https://certiport.pearsonvue.com" target="_blank" class="btn-outline">🏅 Certiport MOS</a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end .main -->
+
+<footer class="footer">
+  <strong>⊞ Microsoft 365 — Curso Completo 2025</strong> &nbsp;·&nbsp;
+  learn.microsoft.com &nbsp;·&nbsp; support.microsoft.com &nbsp;·&nbsp;
+  Diseño H5P Interactivo
+</footer>
+
+<script>
+// ===== NAV =====
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  const map = { inicio:0, ruta:1, microsoft:2, herramientas:3, modulos:4, privacidad:5, evaluacion:6 };
+  tabs[map[id]].classList.add('active');
+  document.querySelector('.main').scrollIntoView({ behavior: 'smooth' });
+
+  if (id === 'microsoft') animateTimeline();
+  if (id === 'evaluacion') animateRings();
+  if (id === 'modulos') resetProgress();
+}
+
+// ===== ACCORDION =====
+function toggleModule(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.module-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) {
+    card.classList.add('open');
+    setTimeout(() => {
+      const bar = card.querySelector('.progress-bar-fill');
+      if (bar) bar.style.width = bar.dataset.width + '%';
+    }, 50);
+  }
+}
+
+function resetProgress() {
+  document.querySelectorAll('.progress-bar-fill').forEach(b => b.style.width = '0%');
+}
+
+// ===== METHODS TABS =====
+function showMethod(btn, id) {
+  document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.method-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('method-' + id).classList.add('active');
+}
+
+// ===== COPY =====
+function copyLink(btn, url) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar enlace'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ===== TIMELINE =====
+function animateTimeline() {
+  const items = document.querySelectorAll('.timeline-item');
+  items.forEach((item, i) => {
+    setTimeout(() => item.classList.add('visible'), i * 120);
+  });
+}
+
+// ===== RINGS =====
+function animateRings() {
+  setTimeout(() => {
+    document.getElementById('ring1').style.strokeDashoffset = 231;
+    document.getElementById('ring2').style.strokeDashoffset = 173;
+    document.getElementById('ring3').style.strokeDashoffset = 173;
+  }, 200);
+}
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
